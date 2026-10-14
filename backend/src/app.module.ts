@@ -5,6 +5,7 @@ import { PrismaModule } from './prisma/prisma.module';
 import { ConfigModule } from '@nestjs/config';
 import { validationSchema } from './config/env.validation'
 import { GroupsModule } from './groups/groups.module';
+import { ScheduleModule } from './schedule/schedule.module';
 
 @Module({
   imports: [
@@ -18,7 +19,8 @@ import { GroupsModule } from './groups/groups.module';
       },
     }),
     PrismaModule,
-    GroupsModule],
+    GroupsModule,
+    ScheduleModule],
   controllers: [AppController],
   providers: [AppService],
 })
