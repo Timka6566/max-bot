@@ -1,7 +1,6 @@
-
 generator client {
-  provider = "prisma-client"
-  output   = "../src/generated/prisma"
+  provider     = "prisma-client"
+  output       = "../src/generated/prisma"
   moduleFormat = "cjs"
 }
 
@@ -10,13 +9,54 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model Group {
+  id String @id @default(ulid())
+
+  fullName      String  @unique // "25-КС-02"
+  year          String // "25"
+  specialtyCode String // "КС"
+  specialtyName String? // "Компьютерные сети"
+  groupNumber   String // "02"
+
+  users User[]
+
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+  schedules Schedule[]
+}
+
 model User {
-  id        String   @id @default(cuid())
-  maxUserId String   @unique
+  id String @id @default(uuid())
+
+  maxUserId String  @unique
   firstName String?
   username  String?
-  role      String   @default("STUDENT")
+  role      Role    @default(STUDENT)
   groupId   String?
+  group     Group?  @relation(fields: [groupId], references: [id])
+
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+}
+
+model Schedule {
+  id          String   @id @default(cuid())
+  groupId     String
+  group       Group    @relation(fields: [groupId], references: [id], onDelete: Cascade)
+  dayOfWeek   Int // 1 = Пн ... 6 = Сб
+  pairNumber  Int // 1..7
+  weekNumber  Int // 1 или 2
+  subject     String
+  teacherName String?
+  room        String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@unique([groupId, dayOfWeek, pairNumber, weekNumber])
+  @@index([groupId])
+}
+
+enum Role {
+  STUDENT
+  TEACHER
 }

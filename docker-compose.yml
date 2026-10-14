@@ -1,5 +1,5 @@
 services:
-  postgres:
+  postgres: 
     image: postgres:16
     container_name: maxbot-postgres
     restart: unless-stopped
