@@ -1,5 +1,5 @@
 import { ConfigModule } from '@nestjs/config';
-import { validationSchema } from '../config/env.validation'
+import { validationSchema } from './env.validation'
 
 export const appConfig = ConfigModule.forRoot({
   isGlobal: true,

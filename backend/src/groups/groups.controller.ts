@@ -1,15 +1,17 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, Query } from '@nestjs/common';
+import { ApiOkResponse, ApiQuery, ApiTags } from '@nestjs/swagger';
 import { GroupsService } from './groups.service';
-import { ApiOkResponse } from '@nestjs/swagger';
 import { GroupResponseDto } from './dto/GroupResponseDto.dto';
 
+@ApiTags('groups')
 @Controller('groups')
 export class GroupsController {
   constructor(private readonly groupsService: GroupsService) { }
 
   @Get()
+  @ApiQuery({ name: 'search', required: false, description: 'Поиск по названию группы или специальности' })
   @ApiOkResponse({ type: [GroupResponseDto] })
-  findAll() {
-    return this.groupsService.findAll()
+  findAll(@Query('search') search?: string) {
+    return this.groupsService.findAll(search);
   }
 }
