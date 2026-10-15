@@ -255,12 +255,3 @@ type Role = 'STUDENT' | 'TEACHER';
 - `POST /api/admin/schedule/upload` — `multipart/form-data`, поле `file` (xlsx/csv)
 - `POST /api/admin/broadcast` — body: `{ message: string, groupId?: string }`
 
-## TODO для бэкенда 
-
-- [OK] В `main.ts` добавить `app.setGlobalPrefix('api')`
-- [ ] Перенести Swagger на `/api/docs` (`SwaggerModule.setup('api/docs', ...)`)
-- [ ] Создать `MaxAuthGuard` (пока читает `x-max-user-id`, позже — `x-max-init-data`)
-- [ ] Создать `@MaxUserId()` параметр-декоратор
-- [ ] Создать `UsersModule` с `POST /user/me` и `POST /user/bind-group`
-- [ ] Добавить `search` в `GET /groups`
-- [ ] Убрать `/` роут из `AppController` (или оставить как healthcheck?) 
