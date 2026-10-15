@@ -40,7 +40,7 @@ model User {
 }
 
 model Schedule {
-  id          String   @id @default(cuid())
+  id          String   @id @default(uuid())
   groupId     String
   group       Group    @relation(fields: [groupId], references: [id], onDelete: Cascade)
   dayOfWeek   Int // 1 = Пн ... 6 = Сб

@@ -1,5 +1,6 @@
 import { INestApplication } from '@nestjs/common';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
+import { apiReference } from '@scalar/nestjs-api-reference';
 
 export function setupSwagger(app: INestApplication): void {
   const config = new DocumentBuilder()
@@ -9,5 +10,14 @@ export function setupSwagger(app: INestApplication): void {
     .build();
 
   const document = SwaggerModule.createDocument(app, config);
+
   SwaggerModule.setup('api/docs', app, document);
+
+  app.use(
+    '/api/reference',
+    apiReference({
+      content: document,
+      theme: 'bluePlanet',
+    }),
+  );
 }

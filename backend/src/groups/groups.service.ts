@@ -17,6 +17,14 @@ export class GroupsService {
                 }
                 : undefined,
             orderBy: [{ year: 'desc' }, { fullName: 'asc' }],
+            select: {
+                id: true,
+                fullName: true,
+                year: true,
+                specialtyCode: true,
+                specialtyName: true,
+                groupNumber: true,
+            },
         });
     }
 }

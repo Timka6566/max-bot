@@ -43,9 +43,10 @@ export class UserService {
             throw new NotFoundException(`Group ${dto.groupId} not found`);
         }
 
-        return this.prisma.user.update({
+        return this.prisma.user.upsert({
             where: { maxUserId },
-            data: { groupId: dto.groupId },
+            update: { groupId: dto.groupId },
+            create: { maxUserId, groupId: dto.groupId },
             select: userSelect,
         });
     }

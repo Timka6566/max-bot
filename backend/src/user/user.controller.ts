@@ -1,4 +1,4 @@
-import { Body, Controller, Post, UseGuards } from '@nestjs/common';
+import { Body, Controller, HttpCode, Post, UseGuards } from '@nestjs/common';
 import { UserService } from './user.service';
 import { ApiHeader, ApiOkResponse, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { MaxAuthGuard } from '../auth/guards/max-auth.guard';
@@ -14,6 +14,7 @@ export class UserController {
   constructor(private readonly userService: UserService) { }
 
   @Post('me')
+  @HttpCode(200)
   @ApiOperation({ summary: 'Получить или создать текущего пользователя' })
   @ApiOkResponse({ type: UserResponseDto })
   upsertMe(@MaxUserId() maxUserId: string) {
@@ -21,6 +22,7 @@ export class UserController {
   }
 
   @Post('bind-group')
+  @HttpCode(200)
   @ApiOperation({ summary: 'Привязать пользователя к группе' })
   @ApiOkResponse({ type: UserResponseDto })
   bindGroup(@MaxUserId() maxUserId: string, @Body() dto: BindGroupDto) {
