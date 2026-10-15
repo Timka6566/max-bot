@@ -10,7 +10,7 @@ datasource db {
 }
 
 model Group {
-  id String @id @default(ulid())
+  id String @id @default(uuid())
 
   fullName      String  @unique // "25-КС-02"
   year          String // "25"

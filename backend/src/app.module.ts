@@ -5,6 +5,7 @@ import { GroupsModule } from './groups/groups.module';
 import { ScheduleModule } from './schedule/schedule.module';
 import { AuthModule } from './auth/auth.module';
 import { appConfig } from './configs/app.config';
+import { UserModule } from './user/user.module';
 
 @Module({
   imports: [
@@ -12,7 +13,9 @@ import { appConfig } from './configs/app.config';
     PrismaModule,
     GroupsModule,
     ScheduleModule,
-    AuthModule],
+    AuthModule,
+    UserModule
+  ],
   controllers: [AppController],
 })
 export class AppModule { }
