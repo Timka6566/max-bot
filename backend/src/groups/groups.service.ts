@@ -3,13 +3,20 @@ import { PrismaService } from '../prisma/prisma.service';
 
 @Injectable()
 export class GroupsService {
-    constructor(
-        private readonly prisma: PrismaService
-    ) { }
+    constructor(private readonly prisma: PrismaService) { }
 
-    async findAll() {
+    async findAll(search?: string) {
         return this.prisma.group.findMany({
-            orderBy: [{ year: 'desc' }, { fullName: 'asc' }]
-        })
+            where: search
+                ? {
+                    OR: [
+                        { fullName: { contains: search, mode: 'insensitive' } },
+                        { specialtyCode: { contains: search, mode: 'insensitive' } },
+                        { specialtyName: { contains: search, mode: 'insensitive' } },
+                    ],
+                }
+                : undefined,
+            orderBy: [{ year: 'desc' }, { fullName: 'asc' }],
+        });
     }
 }
