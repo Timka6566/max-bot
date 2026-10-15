@@ -1,25 +1,18 @@
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { PrismaModule } from './prisma/prisma.module';
-import { ConfigModule } from '@nestjs/config';
-import { validationSchema } from './config/env.validation'
 import { GroupsModule } from './groups/groups.module';
 import { ScheduleModule } from './schedule/schedule.module';
+import { AuthModule } from './auth/auth.module';
+import { appConfig } from './configs/app.config';
 
 @Module({
   imports: [
-    ConfigModule.forRoot({
-      isGlobal: true,
-      validationSchema,
-      validationOptions: {
-        libraryOptions: {
-          abortEarly: false,
-        },
-      },
-    }),
+    appConfig,
     PrismaModule,
     GroupsModule,
-    ScheduleModule],
+    ScheduleModule,
+    AuthModule],
   controllers: [AppController],
 })
 export class AppModule { }
