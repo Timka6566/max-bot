@@ -1249,6 +1249,51 @@
   dependencies:
     "@prisma/debug" "6.19.3"
 
+"@scalar/client-side-rendering@0.4.11":
+  version "0.4.11"
+  resolved "https://registry.yarnpkg.com/@scalar/client-side-rendering/-/client-side-rendering-0.4.11.tgz#1a32c7b9047627f3d0766bd85ca736f25f98391f"
+  integrity sha512-2k75dLAR6Ft3Yf73sdKEjOUQzZ7nmpWgNswjnGCbPO4P0iDOKBXJXmnuNVmaOpFOZl+u4HM4lay0QuyihheTmw==
+  dependencies:
+    "@scalar/helpers" "0.16.3"
+    "@scalar/schemas" "0.13.2"
+    "@scalar/types" "0.23.2"
+    "@scalar/validation" "0.6.7"
+
+"@scalar/helpers@0.16.3":
+  version "0.16.3"
+  resolved "https://registry.yarnpkg.com/@scalar/helpers/-/helpers-0.16.3.tgz#f613b935dc6cb49972dd8c5e51c601fdb14163b3"
+  integrity sha512-He0CySU4Iv4DwyVF40EoVpvPneRQ1zqC/g1eBfR2i2G9RE/BEq/F5AiUrjIkbtTPjSbIiIL1AXMkXvBvgHVdsA==
+
+"@scalar/nestjs-api-reference@^1.2.29":
+  version "1.2.29"
+  resolved "https://registry.yarnpkg.com/@scalar/nestjs-api-reference/-/nestjs-api-reference-1.2.29.tgz#33d3b02979eed8495bfc1b806e4f144f692d3348"
+  integrity sha512-qtPy1LWlFfURjfC6u2LTXxUEGdqalpJkOdTESLnV/rJqWc3wTF8fzoQoJrs9WycYLzmj6kQJjAT4O+ahQadokw==
+  dependencies:
+    "@scalar/client-side-rendering" "0.4.11"
+
+"@scalar/schemas@0.13.2":
+  version "0.13.2"
+  resolved "https://registry.yarnpkg.com/@scalar/schemas/-/schemas-0.13.2.tgz#6136e87f1f332ff91b31ae860b02dabf4a50a6fa"
+  integrity sha512-T4dTbpphpDVHugS2ETd6cHOgF0FUBy58qDB6I3UviIr2HNsJQRG2RB1MX1+XQCT9md7igAzXw9lBJV12hw3NVA==
+  dependencies:
+    "@scalar/helpers" "0.16.3"
+    "@scalar/validation" "0.6.7"
+
+"@scalar/types@0.23.2":
+  version "0.23.2"
+  resolved "https://registry.yarnpkg.com/@scalar/types/-/types-0.23.2.tgz#daface6cc82a620d4da948cc895fb9ab1a9432eb"
+  integrity sha512-sya+RIpIODwcvem7SYRnPB0OdVZtQ15mSpVdPwB5qltYry7xgyp9skdc3PuxTDbyEmLuZ4ZmkSVybpaFMICZiQ==
+  dependencies:
+    "@scalar/helpers" "0.16.3"
+    nanoid "^5.1.6"
+    type-fest "^5.8.0"
+    zod "^4.4.3"
+
+"@scalar/validation@0.6.7":
+  version "0.6.7"
+  resolved "https://registry.yarnpkg.com/@scalar/validation/-/validation-0.6.7.tgz#790b6fed21300a0cc650b123b1cd725b7ff3b61b"
+  integrity sha512-xvmeYb0LOg9B598oVA/1fs9MvnMdtWjQYG3v2Wgftewizr7tQjsdDYT1TQahlDzqRG+r+ml6zlSkPrFiCE5jHQ==
+
 "@scarf/scarf@=1.4.0":
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/@scarf/scarf/-/scarf-1.4.0.tgz#3bbb984085dbd6d982494538b523be1ce6562972"
@@ -3619,6 +3664,11 @@ mute-stream@^3.0.0:
   resolved "https://registry.yarnpkg.com/mute-stream/-/mute-stream-3.0.0.tgz#cd8014dd2acb72e1e91bb67c74f0019e620ba2d1"
   integrity sha512-dkEJPVvun4FryqBmZ5KhDo0K9iDXAwn08tMLDinNdRBNPcYEDiWYysLcc6k3mjTMlbP9KyylvRpd4wFtwrT9rw==
 
+nanoid@^5.1.6:
+  version "5.1.16"
+  resolved "https://registry.yarnpkg.com/nanoid/-/nanoid-5.1.16.tgz#fe345c0a1f9007c32fbb5c139e1208bfd3f41ef7"
+  integrity sha512-kVrnsrJqMR8+oLJnGEmSWw9BivK5mt7H3FZatVRjrc5wGqFYuBxX1yG7+A7Gi5AefkX6t/oCkizcQgpu0cY1dQ==
+
 napi-postinstall@^0.3.4:
   version "0.3.4"
   resolved "https://registry.yarnpkg.com/napi-postinstall/-/napi-postinstall-0.3.4.tgz#7af256d6588b5f8e952b9190965d6b019653bbb9"
@@ -4427,6 +4477,11 @@ synckit@^0.11.8:
   dependencies:
     "@pkgr/core" "^0.3.6"
 
+tagged-tag@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/tagged-tag/-/tagged-tag-1.0.0.tgz#a0b5917c2864cba54841495abfa3f6b13edcf4d6"
+  integrity sha512-yEFYrVhod+hdNyx7g5Bnkkb0G6si8HJurOoOEgC8B/O0uXLHlaey/65KRv6cuWBNhBgHKAROVpc7QyYqE5gFng==
+
 test-exclude@^7.0.1:
   version "7.0.2"
   resolved "https://registry.yarnpkg.com/test-exclude/-/test-exclude-7.0.2.tgz#482392077630bc57d5630c13abe908bb910dfc65"
@@ -4538,6 +4593,13 @@ type-fest@^4.41.0:
   version "4.41.0"
   resolved "https://registry.yarnpkg.com/type-fest/-/type-fest-4.41.0.tgz#6ae1c8e5731273c2bf1f58ad39cbae2c91a46c58"
   integrity sha512-TeTSQ6H5YHvpqVwBRcnLDCBnDOHWYu7IvGbHT6N8AOymcr9PJGjc1GTtiWZTYg0NCgYwvnYWEkVChQAr9bjfwA==
+
+type-fest@^5.8.0:
+  version "5.10.0"
+  resolved "https://registry.yarnpkg.com/type-fest/-/type-fest-5.10.0.tgz#bf0131fdf662889c94c409d37402e364fb2016f7"
+  integrity sha512-NoSdpq/WEiAg5sjmBkmV/hfxv6HJH4NqPNrqjtSO5CwRmpsDfaf4begxW34KdJykH/l1yHtwBWQkCRdoXO8mPA==
+  dependencies:
+    tagged-tag "^1.0.0"
 
 type-is@^1.6.18:
   version "1.6.18"
@@ -4775,3 +4837,8 @@ yoctocolors@^2.1.1:
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/yoctocolors/-/yoctocolors-2.2.0.tgz#c4b68ee477f3982c33e4de24a5aa4a354be506d3"
   integrity sha512-xYqdZFUK/VYazNl/oCDYN+3WloWQwMfZxBoiNt6qNyk+xfOdi598muWE42rNZFp1kNOiqW936q5RhUdnpqElSg==
+
+zod@^4.4.3:
+  version "4.6.7"
+  resolved "https://registry.yarnpkg.com/zod/-/zod-4.6.7.tgz#e806cf64a7f4e37635ce9f2f52c04c3766f75e5b"
+  integrity sha512-g8W2D2kU6a8untc053fX1uVBKzM7yqAxW/3zwk83+6RyF2+SKOuV+c0wBDhUwzV1PaGapmZH+rmcUzPf+3CGwg==

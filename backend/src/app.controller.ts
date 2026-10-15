@@ -1,12 +1,13 @@
 import { Controller, Get } from '@nestjs/common';
-import { AppService } from './app.service';
+import { ApiOkResponse, ApiOperation, ApiTags } from '@nestjs/swagger';
 
-@Controller()
+@ApiTags('health')
+@Controller('health')
 export class AppController {
-  constructor(private readonly appService: AppService) {}
-
   @Get()
-  getHello(): string {
-    return this.appService.getHello();
+  @ApiOperation({ summary: 'Проверка работоспособности сервера' })
+  @ApiOkResponse({ schema: { example: { status: 'ok', timestamp: '2026-10-15T10:00:00.000Z' } } })
+  check() {
+    return { status: 'ok', timestamp: new Date().toISOString() };
   }
 }
