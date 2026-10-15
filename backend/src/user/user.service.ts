@@ -2,14 +2,24 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service';
 import { BindGroupDto } from './dto/bind-group.dto';
 
-const groupSelect = {
+const userSelect = {
     id: true,
-    fullName: true,
-    year: true,
-    specialtyCode: true,
-    specialtyName: true,
-    groupNumber: true
-}
+    maxUserId: true,
+    firstName: true,
+    username: true,
+    role: true,
+    createdAt: true,
+    group: {
+        select: {
+            id: true,
+            fullName: true,
+            year: true,
+            specialtyCode: true,
+            specialtyName: true,
+            groupNumber: true,
+        },
+    },
+};
 
 @Injectable()
 export class UserService {
@@ -20,21 +30,23 @@ export class UserService {
             where: { maxUserId },
             update: {},
             create: { maxUserId },
-            include: { group: { select: groupSelect } }
-        })
+            select: userSelect,
+        });
     }
 
     async bindGroup(maxUserId: string, dto: BindGroupDto) {
         const group = await this.prisma.group.findUnique({
-            where: { id: dto.groupId }
-        })
+            where: { id: dto.groupId },
+        });
 
-        if (!group) throw new NotFoundException(`Group ${dto.groupId} not found`);
+        if (!group) {
+            throw new NotFoundException(`Group ${dto.groupId} not found`);
+        }
 
         return this.prisma.user.update({
             where: { maxUserId },
             data: { groupId: dto.groupId },
-            include: { group: { select: groupSelect } }
-        })
+            select: userSelect,
+        });
     }
 }
