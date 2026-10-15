@@ -60,6 +60,9 @@ http://localhost:5173/api/groups   # должно вернуть список г
 
 # Swagger бэкенда
 http://localhost:3000/api/docs
+
+# Scalar бекенда
+http://localhost:3000/api/reference
 ```
 
 Это база, дальше уже сам там, если че - пиши.
