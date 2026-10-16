@@ -1,4 +1,4 @@
-import { Controller, Get, Param, Query, UseGuards } from '@nestjs/common';
+import { Controller, Get, Param, ParseUUIDPipe, Query, UseGuards } from '@nestjs/common';
 import { ScheduleService } from './schedule.service';
 import { ApiHeader, ApiOkResponse, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { ScheduleResponseDto } from './dto/schedule-response.dto';
@@ -15,7 +15,7 @@ export class ScheduleController {
   @ApiOperation({ summary: 'Расписание группы' })
   @ApiOkResponse({ type: [ScheduleResponseDto] })
   findByGroup(
-    @Param('groupId') groupId: string,
+    @Param('groupId', new ParseUUIDPipe()) groupId: string,
     @Query() query: ScheduleQueryDto,
   ) {
     return this.scheduleService.findByGroup(groupId, query.weekNumber);
