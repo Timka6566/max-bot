@@ -76,26 +76,12 @@ type Role = 'STUDENT' | 'TEACHER';
 
 **Auth:** обязательна
 
-**Body:** отсутствует
-
-**Response `200`:**
+**Body (опционально):**
 
 ```typescript
 {
-  id: string;
-  maxUserId: string;
-  firstName: string | null;
-  username: string | null;
-  role: Role;
-  group: {
-    id: string;
-    fullName: string;
-    year: string;
-    specialtyCode: string;
-    specialtyName: string | null;
-    groupNumber: string;
-  } | null;
-  createdAt: string; 
+  firstName?: string;
+  username?: string;
 }
 ```
 
