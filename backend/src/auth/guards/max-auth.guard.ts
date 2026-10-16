@@ -1,6 +1,5 @@
 import { CanActivate, ExecutionContext, UnauthorizedException } from "@nestjs/common";
 import { Request } from "express";
-import { Observable } from "rxjs";
 
 export class MaxAuthGuard implements CanActivate {
     canActivate(context: ExecutionContext): boolean {
