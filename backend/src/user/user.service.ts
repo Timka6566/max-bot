@@ -1,6 +1,7 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service';
 import { BindGroupDto } from './dto/bind-group.dto';
+import { UpsertMeDto } from './dto/upsert-me.dto';
 
 const userSelect = {
     id: true,
@@ -25,11 +26,18 @@ const userSelect = {
 export class UserService {
     constructor(private readonly prisma: PrismaService) { }
 
-    async upsertMe(maxUserId: string) {
+    async upsertMe(maxUserId: string, dto: UpsertMeDto = {}) {
         return this.prisma.user.upsert({
             where: { maxUserId },
-            update: {},
-            create: { maxUserId },
+            update: {
+                ...(dto.firstName !== undefined && { firstName: dto.firstName }),
+                ...(dto.username !== undefined && { username: dto.username }),
+            },
+            create: {
+                maxUserId,
+                firstName: dto.firstName ?? null,
+                username: dto.username ?? null,
+            },
             select: userSelect,
         });
     }

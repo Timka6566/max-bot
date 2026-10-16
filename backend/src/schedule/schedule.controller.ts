@@ -1,39 +1,35 @@
-import { Controller, Get, Param, Query, UseGuards } from '@nestjs/common';
+import { Controller, Get, Param, ParseUUIDPipe, Query, UseGuards } from '@nestjs/common';
 import { ScheduleService } from './schedule.service';
-import { ApiHeader, ApiOkResponse, ApiOperation, ApiQuery } from '@nestjs/swagger';
+import { ApiHeader, ApiOkResponse, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { ScheduleResponseDto } from './dto/schedule-response.dto';
+import { ScheduleQueryDto } from './dto/schedule-query.dto';
 import { MaxAuthGuard } from '../auth/guards/max-auth.guard';
 import { MaxUserId } from '../auth/decorators/max-user-id.decorator';
 
+@ApiTags('schedule')
 @Controller('schedule')
 export class ScheduleController {
   constructor(private readonly scheduleService: ScheduleService) { }
 
   @Get('group/:groupId')
   @ApiOperation({ summary: 'Расписание группы' })
-  @ApiQuery({ name: 'weekNumber', required: false, enum: [1, 2] })
   @ApiOkResponse({ type: [ScheduleResponseDto] })
   findByGroup(
-    @Param('groupId') groupId: string,
-    @Query('weekNumber') weekNumber?: string,
+    @Param('groupId', new ParseUUIDPipe()) groupId: string,
+    @Query() query: ScheduleQueryDto,
   ) {
-    const week = weekNumber ? parseInt(weekNumber, 10) : undefined
-    return this.scheduleService.findByGroup(groupId, week)
+    return this.scheduleService.findByGroup(groupId, query.weekNumber);
   }
 
   @Get('me')
   @UseGuards(MaxAuthGuard)
   @ApiHeader({ name: 'x-max-user-id', required: true })
   @ApiOperation({ summary: 'Расписание группы текущего пользователя' })
-  @ApiQuery({ name: 'weekNumber', required: false, enum: [1, 2] })
   @ApiOkResponse({ type: [ScheduleResponseDto] })
   findMe(
     @MaxUserId() maxUserId: string,
-    @Query('weekNumber') weekNumber?: string,
+    @Query() query: ScheduleQueryDto,
   ) {
-    const week = weekNumber ? parseInt(weekNumber, 10) : undefined;
-    return this.scheduleService.findByUser(maxUserId, week);
+    return this.scheduleService.findByUser(maxUserId, query.weekNumber);
   }
-
-
 }

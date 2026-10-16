@@ -5,6 +5,7 @@ import { MaxAuthGuard } from '../auth/guards/max-auth.guard';
 import { UserResponseDto } from './dto/user-response.dto';
 import { MaxUserId } from '../auth/decorators/max-user-id.decorator';
 import { BindGroupDto } from './dto/bind-group.dto';
+import { UpsertMeDto } from './dto/upsert-me.dto';
 
 @ApiTags('user')
 @ApiHeader({ name: 'x-max-user-id', required: true })
@@ -17,8 +18,11 @@ export class UserController {
   @HttpCode(200)
   @ApiOperation({ summary: 'Получить или создать текущего пользователя' })
   @ApiOkResponse({ type: UserResponseDto })
-  upsertMe(@MaxUserId() maxUserId: string) {
-    return this.userService.upsertMe(maxUserId);
+  upsertMe(
+    @MaxUserId() maxUserId: string,
+    @Body() dto: UpsertMeDto = {},
+  ) {
+    return this.userService.upsertMe(maxUserId, dto);
   }
 
   @Post('bind-group')
