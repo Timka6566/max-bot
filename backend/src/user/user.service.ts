@@ -50,4 +50,17 @@ export class UserService {
             select: userSelect,
         });
     }
+
+    async findGroupIdByMaxUserId(maxUserId: string): Promise<string> {
+        const user = await this.prisma.user.findUnique({
+            where: { maxUserId },
+            select: { groupId: true },
+        });
+
+        if (!user?.groupId) {
+            throw new NotFoundException('User is not bound to a group');
+        }
+
+        return user.groupId;
+    }
 }
