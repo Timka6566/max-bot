@@ -1,0 +1,15 @@
+{
+    "name": "max-bot",
+    "private": true,
+    "scripts": {
+        "dev": "concurrently -n BACK,FRONT -c blue,magenta \"yarn dev:back\" \"yarn dev:front\"",
+        "dev:all": "yarn db:up && yarn dev",
+        "dev:back": "yarn --cwd backend start:dev",
+        "dev:front": "yarn --cwd frontend dev",
+        "db:up": "docker compose up -d postgres",
+        "db:down": "docker compose down"
+    },
+    "devDependencies": {
+        "concurrently": "^9.1.0"
+    }
+}

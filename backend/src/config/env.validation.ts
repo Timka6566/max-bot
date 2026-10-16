@@ -6,4 +6,5 @@ export const validationSchema = Joi.object({
     NODE_ENV: Joi.string()
         .valid('development', 'production', 'test')
         .default('development'),
+    CORS_ORIGINS: Joi.string().default('*'),
 });
